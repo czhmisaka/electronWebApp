@@ -1,49 +1,38 @@
+<!--
+ * @Date: 2024-04-04 22:23:29
+ * @LastEditors: CZH
+ * @LastEditTime: 2024-04-07 14:51:57
+ * @FilePath: /electron-vite-vue/src/App.vue
+-->
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+import { ref } from 'vue';
+
+// 为了保证链接回显
+const url = ref('http://123.206.222.58/')
+const localUrl = localStorage.getItem('mainUrl') || '';
+if (localUrl && localUrl.indexOf(url.value) > -1) {
+  url.value = localStorage.getItem('mainUrl') as string
+}
+const urlChange = (e: any) => {
+  url.value = e.url
+  localStorage.setItem('mainUrl', e.url)
+}
 </script>
 
 <template>
-  <div>
-    <a href="https://www.electronjs.org/" target="_blank">
-      <img src="./assets/electron.svg" class="logo electron" alt="Electron logo" />
-    </a>
-    <a href="https://vitejs.dev/" target="_blank">
-      <img src="./assets/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld msg="Electron + Vite + Vue" />
-  <div class="flex-center">
-    Place static files into the <code>/public</code> folder
-    <img style="width: 2.4em; margin-left: .4em;" src="/logo.svg" alt="Logo">
-  </div>
+  <webview ref="webView_main" @load-commit="urlChange" class="mainBox" :src="url" partition></webview>
 </template>
 
 <style>
-.flex-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-
-.logo.electron:hover {
-  filter: drop-shadow(0 0 2em #9FEAF9);
-}
-
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+.mainBox {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 10;
+  width: 100vw;
+  height: 100vh;
+  padding: 0px;
+  border: 0px black solid;
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
 }
 </style>

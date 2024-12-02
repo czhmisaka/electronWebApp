@@ -1,5 +1,5 @@
 {
-  "name": "electron-vue-vite",
+  "name": "Mqtt_ModuleTower",
   "version": "28.0.0",
   "main": "dist-electron/main/index.js",
   "description": "Really simple Electron + Vue + Vite boilerplate.",
@@ -34,5 +34,8 @@
     "vite-plugin-electron-renderer": "^0.14.5",
     "vue": "^3.4.21",
     "vue-tsc": "^2.0.6"
+  },
+  "dependencies": {
+    "element-plus": "^2.6.3"
   }
 }

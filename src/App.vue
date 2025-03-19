@@ -1,14 +1,15 @@
 <!--
  * @Date: 2024-04-04 22:23:29
- * @LastEditors: CZH
- * @LastEditTime: 2024-04-07 14:51:57
- * @FilePath: /electron-vite-vue/src/App.vue
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2024-12-03 00:01:28
+ * @FilePath: \github\electronWebApp\src\App.vue
 -->
 <script setup lang="ts">
 import { ref } from 'vue';
 
 // 为了保证链接回显
-const url = ref('http://123.206.222.58/')
+// const url = ref('http://123.206.222.58/')
+const url = ref('http://188.188.2.231/')
 const localUrl = localStorage.getItem('mainUrl') || '';
 if (localUrl && localUrl.indexOf(url.value) > -1) {
   url.value = localStorage.getItem('mainUrl') as string
